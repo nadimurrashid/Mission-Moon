@@ -1,0 +1,347 @@
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+int Game[4][4];
+
+void Reset();
+void Left();
+void Right();
+void Up();
+void Down();
+void Print();
+int  Check();
+void Logo();
+
+
+
+
+void main()
+
+{
+int counter=0;
+ char character='a';
+ clrscr();
+
+ Reset();      
+ Logo();              
+ Print();
+ while(character!='q')
+ {
+  character=getch();
+  switch(character)
+  {
+  case 80:
+  Down();
+  Print();
+  Check();
+  break;
+
+  case 77:
+  Right();
+  Print();
+  Check();
+  break;
+
+  case 75:
+  Left();
+  Print();
+  Check();
+  break;
+
+  case 72:
+  Up();
+  Print();
+  Check();
+  break;
+
+  case'r':
+  Reset();
+  Print();
+  Check();
+  break;
+  }
+ }
+
+
+
+}
+
+
+void Logo()
+{
+
+ clrscr();
+
+ printf("\n==============================================================================");
+ printf("\n                          						         ");
+ printf("\n==============================================================================");
+
+ printf("\n\n\n\n\n\n\t\t\t Keys: \n\n\n\t\t\t\t Up");
+ printf("\n\n\t\t\t\t Down");
+ printf("\n\n\t\t\t\t Left");
+ printf("\n\n\t\t\t\t Right\n\n\n\n");
+
+ 
+ printf("\n\n\n\n\t\t               'q' to Quit.");
+ printf("\n\n\n\n\n\n\n\t\t\tPress Any Key To Continue");
+
+getch();
+}
+
+
+
+
+
+void Print()
+{       clrscr();
+
+ printf("\n\n\n\n\n\n\n\n\n\n\n\n");
+ printf("\n\t\t\t_____________________");
+ printf("\n\t\t\t|    |    |    |    |");
+ printf("\n\t\t\t|    |    |    |    |");
+ gotoxy(27,16);
+ {
+  printf("%d",Game[0][0]);
+ }
+ gotoxy(32,16);
+ {
+  printf("%d",Game[0][1]);
+ }
+ gotoxy(37,16);
+ {
+  printf("%d",Game[0][2]);
+ }
+ gotoxy(42,16);
+ {
+  printf("%d",Game[0][3]);
+ }
+ printf("\n\t\t\t|    |    |    |    |");
+ printf("\n\t\t\t---------------------");
+ printf("\n\t\t\t|    |    |    |    |");
+ printf("\n\t\t\t|    |    |    |    |");
+ gotoxy(27,20);
+ {
+  printf("%d",Game[1][0]);
+ }
+ gotoxy(32,20);
+ {
+  printf("%d",Game[1][1]);
+ }
+ gotoxy(37,20);
+ {
+  printf("%d",Game[1][2]);
+ }
+ gotoxy(42,20);
+ {
+  printf("%d",Game[1][3]);
+ }
+ printf("\n\t\t\t|    |    |    |    |");
+ printf("\n\t\t\t---------------------");
+ printf("\n\t\t\t|    |    |    |    |");
+ printf("\n\t\t\t|    |    |    |    |");
+ gotoxy(27,24);
+ {
+  printf("%d",Game[2][0]);
+ } gotoxy(32,24);
+ {
+  printf("%d",Game[2][1]);
+ }
+ gotoxy(37,24);
+ {
+  printf("%d",Game[2][2]);
+ }
+ gotoxy(42,24);
+ {
+  printf("%d",Game[2][3]);
+ }
+ printf("\n\t\t\t|    |    |    |    |");
+ printf("\n\t\t\t---------------------");
+ printf("\n\t\t\t|    |    |    |    |");
+ printf("\n\t\t\t|    |    |    |    |");
+ gotoxy(27,28);
+ {
+  printf("%d",Game[3][0]);
+ }
+ gotoxy(32,28);
+ {
+  printf("%d",Game[3][1]);
+ }
+ gotoxy(37,28);
+ {
+  printf("%d",Game[3][2]);
+ }
+ gotoxy(42,28);
+ {
+  printf("%d",Game[3][3]);
+ }
+ printf("\n\t\t\t|    |    |    |    |");
+ printf("\n\t\t\t~~~~~~~~~~~~~~~~~~~~~");
+     
+}
+
+
+
+
+void Reset()
+{
+ int reset=15,i,j;
+
+ for ( i=0;i<4;i++)
+ {
+  for ( j=0;j<4;j++)
+  {
+   Game[i][j]=reset--;
+  }
+ }
+ Game[3][3]=0;
+}
+
+
+
+
+int Check()
+{
+
+    int count=0,i,j,counter;
+    int check=0;
+    if(check!=0)
+    {
+    counter++;
+    }
+
+ for ( i=0;i<4;i++)
+ {
+  for ( j=0;j<4;j++)
+  {
+   count++;
+   if(i==3 && j==3)
+   {
+    break;
+   }
+   if( Game[i][j]==count)
+   {
+    check++;
+   }
+
+  }
+ }
+ if(check==15)
+ {
+  gotoxy(32,36);
+  printf("Congratulations");
+  return 1;
+
+ }
+ else return 0;
+}
+
+
+
+
+
+void Left()
+{
+ int x,y,i,j;
+       
+ for ( i=0;i<4;i++)
+ {
+  for ( j=0;j<4;j++)
+  {
+   if (Game[i][j]==0)
+   { 
+    x=i;
+    y=j;  
+   }
+  }
+ }
+ if(y!=3)
+ {
+  Game[x][y]=Game[x][y+1];
+  Game[x][y+1]=0;
+ }
+
+
+}
+
+
+
+void Right()
+{
+ int x,y,i,j;
+
+ for ( i=0;i<4;i++)
+ {
+  for ( j=0;j<4;j++)
+  {
+   if (Game[i][j]==0)
+   { 
+    x=i;
+    y=j;  
+   }
+  }
+ }
+ if(y!=0)
+ {
+  Game[x][y]=Game[x][y-1];
+  Game[x][y-1]=0;
+ }
+
+
+}
+
+
+
+
+void Up()
+{
+ int x,y,i,j;
+
+ for ( i=0;i<4;i++)
+ {
+  for ( j=0;j<4;j++)
+  {
+   if (Game[i][j]==0)
+   { 
+    x=i;
+    y=j;  
+   }
+  }
+ }
+ if(x!=3)
+ {
+  Game[x][y]=Game[x+1][y];
+  Game[x+1][y]=0;
+ }
+
+
+}
+
+
+
+
+
+void Down()
+{
+ int x,y,i,j;
+
+ for ( i=0;i<4;i++)
+ {
+  for ( j=0;j<4;j++)
+  {
+   if (Game[i][j]==0)
+   { 
+    x=i;
+    y=j;  
+   }
+  }
+ }
+ if(x!=0)
+ {
+  Game[x][y]=Game[x-1][y];
+  Game[x-1][y]=0;
+ }
+
+
+}
